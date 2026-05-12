@@ -20,10 +20,10 @@
 FROM cloudron/base:5.0.0
 
 # ── Labels ────────────────────────────────────────────────────────────────────
-LABEL org.opencontainers.image.title="Parking" \
-      org.opencontainers.image.description="Lightweight Cloudron domain parking app" \
-      org.opencontainers.image.authors="Korpit <admin@korpit.net>" \
-    org.opencontainers.image.version="0.2.4"
+LABEL org.opencontainers.image.title="Parked" \
+      org.opencontainers.image.description="A lightweight domain parking app for Cloudron." \
+      org.opencontainers.image.authors="Shaun Sundquist <support@bluepants.dev>" \
+      org.opencontainers.image.version="0.2.5"
 
 # ── System packages ───────────────────────────────────────────────────────────
 # nginx   : static file server — the only runtime dependency
