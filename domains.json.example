@@ -1,0 +1,53 @@
+{
+  "_readme": [
+    "This is the domains.json configuration file for the Parking app.",
+    "",
+    "On first run, a copy of this file is created at /app/data/domains.json",
+    "inside the running container.  To customise your parked domains:",
+    "",
+    "  1. Connect to the app's file manager, or use:",
+    "       cloudron exec --app <app-id> -- vi /app/data/domains.json",
+    "  2. Edit the 'domains' section (see examples below).",
+    "  3. Restart the app:",
+    "       cloudron restart --app <app-id>",
+    "",
+    "Field resolution order for each domain:",
+    "  domains.<domain>.<field>  →  _defaults.<field>  →  built-in fallback",
+    "",
+    "Setting a field to null causes it to inherit from the next level."
+  ],
+
+  "_defaults": {
+    "title":  null,
+    "image":  null,
+    "blurb":  "This domain is parked and will be available soon."
+  },
+
+  "domains": {
+
+    "example.com": {
+      "title": "example.com",
+      "image": null,
+      "blurb": "This domain is parked and will be available soon."
+    },
+
+    "myoldband.net": {
+      "title": "My Old Band",
+      "image": null,
+      "blurb": "Thanks for visiting! This domain is no longer active."
+    },
+
+    "acquired-brand.io": {
+      "title": "Acquired Brand",
+      "image": "/img/acquired-brand.io.png",
+      "blurb": "This brand has been acquired. Visit our main site for more information."
+    },
+
+    "coming-soon-project.com": {
+      "title": "Something Big Is Coming",
+      "image": null,
+      "blurb": "We're working on something exciting. Stay tuned."
+    }
+
+  }
+}

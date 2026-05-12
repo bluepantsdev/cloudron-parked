@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<!--
+  vhosts.html — Display vhost configuration from domains.json
+  ─────────────────────────────────────────────────────────────────────────────
+  This page displays the current vhost configuration by fetching domains.json
+  and displaying it in a readable format.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VHost Configuration</title>
+  <meta name="robots" content="noindex, nofollow">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    html {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                   "Helvetica Neue", Arial, Monaco, "Courier New", monospace;
+      font-size: 16px;
+      line-height: 1.6;
+      color: #1a1a2e;
+      background: #f5f5f5;
+    }
+    
+    body {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    h1 {
+      font-size: 2rem;
+      color: #0f3460;
+      margin-bottom: 0.5rem;
+      border-bottom: 3px solid #4361ee;
+      padding-bottom: 0.5rem;
+    }
+    
+    .subtitle {
+      color: #666;
+      margin-bottom: 2rem;
+      font-size: 0.9rem;
+    }
+    
+    .config-section {
+      background: white;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    h2 {
+      font-size: 1.3rem;
+      color: #4361ee;
+      margin-bottom: 1rem;
+      border-left: 4px solid #4361ee;
+      padding-left: 0.75rem;
+    }
+    
+    .domain-block {
+      background: #f8f9fa;
+      border-radius: 6px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border: 1px solid #e0e0e0;
+    }
+    
+    .domain-name {
+      font-weight: 700;
+      color: #0f3460;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      font-family: Monaco, "Courier New", monospace;
+    }
+    
+    .config-item {
+      margin-left: 1rem;
+      margin-bottom: 0.25rem;
+      font-size: 0.95rem;
+    }
+    
+    .config-label {
+      font-weight: 600;
+      color: #555;
+      display: inline-block;
+      min-width: 80px;
+    }
+    
+    .config-value {
+      color: #333;
+      font-family: Monaco, "Courier New", monospace;
+      background: #fff;
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+    
+    .raw-json {
+      background: #1a1a2e;
+      color: #00ff00;
+      padding: 1.5rem;
+      border-radius: 6px;
+      overflow-x: auto;
+      font-family: Monaco, "Courier New", monospace;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+    
+    .error {
+      background: #ffe0e0;
+      color: #c00;
+      padding: 1rem;
+      border-radius: 6px;
+      border: 1px solid #faa;
+    }
+    
+    .loading {
+      text-align: center;
+      padding: 2rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <h1>VHost Configuration</h1>
+  <p class="subtitle">Current domain parking configuration from domains.json</p>
+  
+  <div id="content">
+    <div class="loading">Loading configuration...</div>
+  </div>
+  
+  <script>
+    async function loadConfig() {
+      const contentDiv = document.getElementById('content');
+      
+      try {
+        const response = await fetch('/vhosts.json');
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        
+        const config = await response.json();
+        
+        let html = '';
+        
+        // Display defaults
+        if (config._defaults) {
+          html += '<div class="config-section">';
+          html += '<h2>Default Settings</h2>';
+          html += '<div class="domain-block">';
+          for (const [key, value] of Object.entries(config._defaults)) {
+            html += '<div class="config-item">';
+            html += `<span class="config-label">${key}:</span> `;
+            html += `<span class="config-value">${value === null ? 'null' : value}</span>`;
+            html += '</div>';
+          }
+          html += '</div>';
+          html += '</div>';
+        }
+        
+        // Display domains
+        if (config.domains) {
+          html += '<div class="config-section">';
+          html += '<h2>Configured Domains</h2>';
+          
+          const domainList = Object.entries(config.domains);
+          if (domainList.length === 0) {
+            html += '<p style="color: #666;">No domains configured.</p>';
+          } else {
+            for (const [domain, settings] of domainList) {
+              html += '<div class="domain-block">';
+              html += `<div class="domain-name">${domain}</div>`;
+              
+              for (const [key, value] of Object.entries(settings)) {
+                html += '<div class="config-item">';
+                html += `<span class="config-label">${key}:</span> `;
+                html += `<span class="config-value">${value === null ? 'null' : value}</span>`;
+                html += '</div>';
+              }
+              
+              html += '</div>';
+            }
+          }
+          
+          html += '</div>';
+        }
+        
+        // Display raw JSON
+        html += '<div class="config-section">';
+        html += '<h2>Raw JSON</h2>';
+        html += '<pre class="raw-json">';
+        html += JSON.stringify(config, null, 2);
+        html += '</pre>';
+        html += '</div>';
+        
+        contentDiv.innerHTML = html;
+        
+      } catch (error) {
+        contentDiv.innerHTML = `
+          <div class="error">
+            <strong>Error loading configuration:</strong><br>
+            ${error.message}
+          </div>
+        `;
+      }
+    }
+    
+    loadConfig();
+  </script>
+</body>
+</html>

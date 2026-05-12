@@ -1,0 +1,89 @@
+[
+  {
+    "version": "0.2.1",
+    "manifest": {
+      "id": "xyz.korpit.parked",
+      "title": "Parked",
+      "author": "Korpit <admin@korpit.net>",
+      "description": "A lightweight domain parking app for Cloudron.\n\nDisplays a branded landing page for each domain parked on your Cloudron instance. Supports multiple secondary domains (configured via the Cloudron admin), each with its own customisable title, logo image, and blurb — set via a simple JSON config file stored in persistent app data.\n\nDesigned to be as lean as possible: static nginx serving, no database, no runtime framework.",
+      "tagline": "Park and brand your unused domains",
+      "version": "0.2.1",
+      "manifestVersion": 2,
+      "multiDomain": true,
+      "healthCheckPath": "/",
+      "httpPort": 8000,
+      "addons": {
+        "localstorage": {
+          "locations": ["/app/data"]
+        }
+      },
+      "website": "https://korpit.xyz",
+      "contactEmail": "admin@korpit.net",
+      "icon": "logo.png",
+      "tags": ["utility", "domain", "parking"],
+      "minBoxVersion": "7.5.0",
+      "packagerName": "Korpit",
+      "packagerUrl": "https://korpit.xyz"
+    },
+    "releaseNotes": "Version 0.2.1: Add /vhosts configuration viewer endpoint and redirect non-existing paths to root",
+    "image": "registry.korpit.net/parking:0.2.1"
+  },
+  {
+    "version": "0.2.0",
+    "manifest": {
+      "id": "xyz.korpit.parked",
+      "title": "Parked",
+      "author": "Korpit <admin@korpit.net>",
+      "description": "A lightweight domain parking app for Cloudron.\n\nDisplays a branded landing page for each domain parked on your Cloudron instance. Supports multiple secondary domains (configured via the Cloudron admin), each with its own customisable title, logo image, and blurb — set via a simple JSON config file stored in persistent app data.\n\nDesigned to be as lean as possible: static nginx serving, no database, no runtime framework.",
+      "tagline": "Park and brand your unused domains",
+      "version": "0.2.0",
+      "manifestVersion": 2,
+      "multiDomain": true,
+      "healthCheckPath": "/",
+      "httpPort": 8000,
+      "addons": {
+        "localstorage": {
+          "locations": ["/app/data"]
+        }
+      },
+      "website": "https://korpit.xyz",
+      "contactEmail": "admin@korpit.net",
+      "icon": "logo.png",
+      "tags": ["utility", "domain", "parking"],
+      "minBoxVersion": "7.5.0",
+      "packagerName": "Korpit",
+      "packagerUrl": "https://korpit.xyz"
+    },
+    "releaseNotes": "Bump to 0.2.0 and move base image to cloudron/base:5.0.0.",
+    "image": "registry.korpit.net/parking:0.2.0"
+  },
+  {
+    "version": "0.1.8",
+    "manifest": {
+      "id": "xyz.korpit.parked",
+      "title": "Parked",
+      "author": "Korpit <admin@korpit.net>",
+      "description": "A lightweight domain parking app for Cloudron.\n\nDisplays a branded landing page for each domain parked on your Cloudron instance. Supports multiple secondary domains (configured via the Cloudron admin), each with its own customisable title, logo image, and blurb — set via a simple JSON config file stored in persistent app data.\n\nDesigned to be as lean as possible: static nginx serving, no database, no runtime framework.",
+      "tagline": "Park and brand your unused domains",
+      "version": "0.1.8",
+      "manifestVersion": 2,
+      "multiDomain": true,
+      "healthCheckPath": "/",
+      "httpPort": 8000,
+      "addons": {
+        "localstorage": {
+          "locations": ["/app/data"]
+        }
+      },
+      "website": "https://korpit.xyz",
+      "contactEmail": "admin@korpit.net",
+      "icon": "logo.png",
+      "tags": ["utility", "domain", "parking"],
+      "minBoxVersion": "7.5.0",
+      "packagerName": "Korpit",
+      "packagerUrl": "https://korpit.xyz"
+    },
+    "releaseNotes": "Initial version: lightweight domain parking app with static nginx serving and JSON config for customisation.",
+    "image": "registry.korpit.net/parking:0.1.8"
+  }
+]

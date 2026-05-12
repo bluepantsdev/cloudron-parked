@@ -1,0 +1,34 @@
+{
+  "id": "dev.bluepants.parked",
+  "title": "Parked",
+  "author": "Shaun Sundquist <admin@bluepants.dev>",
+  "description": "file://DESCRIPTION.md",
+  "tagline": "Park and brand your unused domains.",
+  "changelog": "file://VersionHistory.md",
+  "version": "0.2.4",
+  "manifestVersion": 2,
+  "multiDomain": true,
+  "healthCheckPath": "/",
+  "httpPort": 8000,
+  "addons": {
+    "localstorage": {
+      "locations": [
+        "/app/data"
+      ]
+    }
+  },
+  "website": "https://bluepants.dev",
+  "contactEmail": "admin@bluepants.dev",
+  "icon": "logo.png",
+  "tags": [
+    "utility",
+    "domain",
+    "parking"
+  ],
+  "minBoxVersion": "7.5.0",
+  "checklist": {
+    "configure-domains": {
+      "message": "Configure your parked domains by editing the `domains.json` file in the app's data directory. Visit **$CLOUDRON-APP-ORIGIN/vhosts** to view the current configuration."
+    }
+  }
+}
