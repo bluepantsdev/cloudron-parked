@@ -1,15 +1,15 @@
 {
+  "manifestVersion": 2,
   "id": "dev.bluepants.parked",
   "title": "Parked",
-  "author": "Shaun Sundquist <admin@bluepants.dev>",
+  "author": "Shaun Sundquist <support@bluepants.dev>",
   "description": "file://DESCRIPTION.md",
   "tagline": "Park and brand your unused domains.",
   "changelog": "file://VersionHistory.md",
-  "version": "0.2.4",
-  "manifestVersion": 2,
-  "multiDomain": true,
+  "version": "0.2.5",
   "healthCheckPath": "/",
   "httpPort": 8000,
+  "multiDomain": true,
   "addons": {
     "localstorage": {
       "locations": [
@@ -18,13 +18,14 @@
     }
   },
   "website": "https://bluepants.dev",
-  "contactEmail": "admin@bluepants.dev",
+  "contactEmail": "support@bluepants.dev",
   "icon": "logo.png",
   "tags": [
     "utility",
     "domain",
     "parking"
   ],
+  "mediaLinks": [],
   "minBoxVersion": "7.5.0",
   "checklist": {
     "configure-domains": {
