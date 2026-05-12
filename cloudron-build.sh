@@ -10,7 +10,7 @@
 #   2. Reports any version mismatches (version.txt is authoritative)
 #   3. Prompts for new version (with auto-increment suggestion if format is N.N.N)
 #   4. Automatically updates 3 version files (NOT CloudronVersions.json)
-#   5. Executes: cloudron build --tag <version>
+#   5. Executes: cloudron build --repository <registry/image> --tag <version>
 #   6. Optionally deploys to parked.korpit.xyz
 #
 # Note: CloudronVersions.json is a version history/changelog and should be
@@ -266,10 +266,15 @@ echo -e "${YELLOW}      Update it manually when publishing to the app store.${NC
 echo
 
 # ── Step 5: Execute cloudron build ───────────────────────────────────────────
-echo -e "${BLUE}Running: cloudron build --tag ${NEW_VERSION}${NC}"
+if [ -z "${REGISTRY_IMAGE_BASE}" ]; then
+    echo -e "${RED}Error: REGISTRY_IMAGE_BASE is empty. Check ${CONFIG_FILE}.${NC}"
+    exit 1
+fi
+
+echo -e "${BLUE}Running: cloudron build --repository ${REGISTRY_IMAGE_BASE} --tag ${NEW_VERSION}${NC}"
 echo
 
-if cloudron build --tag "${NEW_VERSION}"; then
+if cloudron build --repository "${REGISTRY_IMAGE_BASE}" --tag "${NEW_VERSION}"; then
     echo
     echo -e "${GREEN}╔═══════════════════════════════════════════════════════════════╗${NC}"
     echo -e "${GREEN}║                    Build Successful                           ║${NC}"

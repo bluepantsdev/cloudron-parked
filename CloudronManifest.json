@@ -6,7 +6,7 @@
   "description": "file://DESCRIPTION.md",
   "tagline": "Park and brand your unused domains.",
   "changelog": "file://VersionHistory.md",
-  "version": "0.2.5",
+  "version": "0.2.7",
   "healthCheckPath": "/",
   "httpPort": 8000,
   "multiDomain": true,

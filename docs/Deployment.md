@@ -97,8 +97,10 @@ The Docker Builder watches a Git repository and automatically builds and pushes 
 
    ```bash
    cd /path/to/parking/repo
-   cloudron build --set-repository registry.korpit.net/parking
+   cloudron build --repository registry.korpit.net/parking --tag init-check
    ```
+
+   This stores the repository for future builds in this project.
 
 **Test the build:**
 

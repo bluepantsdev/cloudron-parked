@@ -377,7 +377,7 @@ If `cloudron build` tries to push to Docker Hub instead of your private registry
 
 ```bash
 # Configure the repository location
-cloudron build --set-repository registry.korpit.net/parking
+  cloudron build --repository registry.korpit.net/parking --tag init-check
 ```
 
 This setting is saved for future builds in this project directory.
